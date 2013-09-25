@@ -1,0 +1,101 @@
+snippet @p
+	@param ${1:string} $${2:name} ${3:description}
+snippet @a
+	@author `g:snips_author`$1
+snippet @r
+	@return ${1:bool} ${2:Success of a operation.}
+snippet @t
+	@throws ${1:Exception} ${2:When something breaks.}
+snippet var
+	/**
+	 * @var ${1:string} ${2:description}
+	 */
+	${3:protected} ${4:$_foo};${5}
+snippet setget
+	/**
+	 * @var ${1:mixed} ${2:Description}
+	 */
+	protected $_${3:optionName} = ${4:null};
+
+	/**
+	 * Set \`$3\` option
+	 * @author `g:snips_author`
+	 *
+	 * @param $1 $${5:option_name} $2
+	 *
+	 * @return ${7:ThisClassName} $this
+	 */
+	public function set${6:OptionName} ($$5)
+	{
+	    ${8:$this->_$3 = $$5};
+	    return $this;
+	}
+
+
+
+	/**
+	 * Get \`$3\` option
+	 * @author `g:snips_author`
+	 *
+	 * @return $2
+	 */
+	public function get$6 ()
+	{${9}
+	    return $this->_$3;
+	}
+snippet tforeach
+	<?php foreach (${1:$values} as ${2:$key => $value}) : ?>
+	    ${3}
+	<?php endforeach; ?>
+snippet tforeachif
+	<?php if (${3:empty($1)}) : ?>
+	    ${4:no items}
+	<?php else /* if $3 */ : ?>
+	    <?php foreach (${1:$values} as ${2:$key => $value}) : ?>
+	        ${5}
+	    <?php endforeach; /* $1 */ ?>
+	<?php endif; /* if $3 else */ ?>
+snippet tif
+	<?php if (${1:true}) : ?>
+	    ${3}
+	<?php endif; /* ${2:$1} */ ?>
+snippet tifelse
+	<?php if (${1:true}) : ?>
+	    ${3}
+	<?php else : ?>
+	    ${4}
+	<?php endif; /* ${2:$1 else} */ ?>
+snippet telse
+	<?php else : ?>${3}
+snippet tendif
+	<?php endif; ?>${3}
+snippet hgjoin
+	new Join(
+	    $${1:model_a},
+	    $${2:model_b},
+		new FoBinary($$1['${3:id}'], '${4:=}', $$2['${5:id}'])
+	);${6}
+snippet log
+	Zend_Registry::get('logger')->log(array(${1:'OHAI'}), Zend_Log::${2:INFO});
+snippet dump
+	var_dump(${1:$result});${2}
+snippet pre
+	echo '<pre>'.htmlspecialchars(${1:$query}).'</pre>';${2}
+snippet dumpdq
+	echo '<pre>'.htmlspecialchars(${1:$query}).'</pre>';var_dump($1->getParams());${2}
+snippet die
+	die(${1:'died in '.__FILE__.':'.__LINE__.' → '.__CLASS__.'::'.__FUNCTION__.'()'});
+snippet dumpdie
+	var_dump(${1:$result});die(${2:"dump'n'died in ".__FILE__.':'.__LINE__.' → '.__CLASS__.'::'.__FUNCTION__.'()'});${3}
+snippet dumpdqdie
+	echo '<pre>'.htmlspecialchars(${1:$query}).'</pre>';var_dump($1->getParams());die(${2:"dump'n'died in ".__FILE__.':'.__LINE__.' → '.__CLASS__.'::'.__FUNCTION__.'()'});${3}
+snippet <?
+	<?=${1:$foo}?>${2}
+snippet ttr
+	<?=$this->trans('${1}')?>${2}
+snippet tr
+	$this->trans('${1}')${2}
+snippet /**
+	/**
+	 * ${1}
+	 */
