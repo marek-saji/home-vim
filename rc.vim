@@ -256,21 +256,23 @@ augroup END
 
 
 " term and screen titles
-if &term =~ 'screen\(\.\(xterm\|rxvt\)\(-\(256\)\?color\)\?\)\?'
-  " term title.
-  set t_ts=]2;
-  set t_fs=
-  set title
-  set titlestring=vim\ :\ %t%(\ %M%)%(\ %{fugitive#statusline()}%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
-  " screen title
-  set t_IS=k
-  set t_IE=\
-  set icon
-  set iconstring=vim\ %t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
-else
-  " term title
-  set title
-  set titlestring=vim\ —\ %t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
+if has("statusline") && has("title")
+  if &term =~ 'screen\(\.\(xterm\|rxvt\)\(-\(256\)\?color\)\?\)\?'
+    " term title.
+    set t_ts=]2;
+    set t_fs=
+    set title
+    set titlestring=vim\ :\ %t%(\ %M%)%(\ %{fugitive#statusline()}%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
+    " screen title
+    set t_IS=k
+    set t_IE=\
+    set icon
+    set iconstring=vim\ %t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
+  else
+    " term title
+    set title
+    set titlestring=vim\ —\ %t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
+  endif
 endif
 
 
