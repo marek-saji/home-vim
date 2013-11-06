@@ -12,11 +12,11 @@ if has("multi_byte")
   if &termencoding == ""
     let &termencoding=&encoding
     if $TERM == "linux" || $TERM_PROGRAM == "GLterm"
-      let &termencoding=latin1
+      let &termencoding="latin1"
     elseif $TERM == "xterm" || $TERM == "xterm-color"
       let propv = system("xprop -id $WINDOWID -f WM_LOCALE_NAME 8s ' $0' -notype WM_LOCALE_NAME")
       if propv !~ "WM_LOCALE_NAME .*UTF.*8"
-        let &termencoding=latin1
+        let &termencoding="latin1"
       endif
     endif
   endif
