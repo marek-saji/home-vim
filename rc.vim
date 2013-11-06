@@ -177,7 +177,11 @@ endif
 " text formatting / layout
 "
 
-set formatoptions=tcrqnj
+set formatoptions=tcrqn
+" Use the 'j' format option when available.
+if v:version ># 703 || v:version ==# 703 && has('patch541')
+    set formatoptions+=j
+endif
 set autoindent
 set smartindent
 set cindent
