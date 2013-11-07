@@ -144,9 +144,17 @@ set mouse=a
 " shortens messages to avoid 'press a key' prompt
 set shortmess=atI
 
-" hightlight characters above 80th
-highlight OverLength cterm=bold gui=bold
-match OverLength /\%81v.*/
+set textwidth=72
+" relative to textwidth
+set colorcolumn=+0
+" highlight column at textwidth
+highlight clear ColorColumn
+highlight ColorColumn cterm=underline
+" hightlight characters above textwidth
+highlight clear OverLength
+highlight OverLength cterm=bold
+execute 'match OverLength /\%'.&textwidth.'v.*/'
+" colors for GUI set in .gvimrc
 
 " always show gutter (sign column)
 autocmd BufEnter * sign define empty
