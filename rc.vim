@@ -115,6 +115,12 @@ set viminfo+=!
 " none ot thes should be word dividers
 set iskeyword+=_,$,@,%,#,-
 
+if has("clipboard")
+  set clipboard=unnamed
+elseif has("xterm_clipboard") && has("unnamedplus")
+  set clipboard=unnamedplus
+endif
+
 
 " Files / Backups
 
