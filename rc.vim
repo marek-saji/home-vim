@@ -151,6 +151,8 @@ set mouse=a
 set shortmess=atI
 
 set textwidth=72
+" don't break already long lines
+set formatoptions+=l
 " relative to textwidth
 set colorcolumn=+0
 " highlight column at textwidth
