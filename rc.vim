@@ -65,6 +65,9 @@ let g:snips_author = 'm.augustynowicz'
 
 Bundle 'tpope/vim-fugitive'
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+" auto open quickfix window
+autocmd QuickFixCmdPost *grep* cwindow
+autocmd QuickFixCmdPost *log* cwindow
 
 
 Bundle 'sjl/gundo.vim'
