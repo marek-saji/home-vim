@@ -172,6 +172,11 @@ highlight OverLength cterm=bold
 execute 'match OverLength /\%'.&textwidth.'v.*/'
 " colors for GUI set in .gvimrc
 
+" hightlight current line in black
+highlight clear CursorLine
+highlight CursorLine ctermbg=black
+set cursorline
+
 " always show gutter (sign column)
 autocmd BufEnter * sign define empty
 autocmd BufEnter * execute 'sign place 9999 line=1 name=empty buffer=' . bufnr('')
