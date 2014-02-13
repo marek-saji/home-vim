@@ -1,3 +1,6 @@
+snippet <?php
+	<?php
+	$1
 snippet @p
 	@param ${1:string} $${2:name} ${3:description}
 snippet @a
@@ -76,17 +79,20 @@ snippet dump
 snippet pre
 	echo '<pre>'.htmlspecialchars(${1:$query}).'</pre>';${2}
 snippet dumpdq
-	echo '<pre>'.htmlspecialchars(${1:$query}->builSqlQuery()).'</pre>';var_dump($1->getParams());${2}
+	echo '<pre>'.htmlspecialchars(${1:$query}->buildSqlQuery()).'</pre>';var_dump($1->getParams());${2}
 snippet die
 	die(${1:'died in '.__FILE__.':'.__LINE__.' → '.__CLASS__.'::'.__FUNCTION__.'()'});
 snippet dumpdie
-	var_dump(${1:$result});die(${2:"dump'n'died in ".__FILE__.':'.__LINE__.' → '.__CLASS__.'::'.__FUNCTION__.'()'});${3}
+	var_dump(${1:$result});
+	die(${2:"dump'n'died in ".__FILE__.':'.__LINE__.' → '.__CLASS__.'::'.__FUNCTION__.'()'});${3}
 snippet dumpdqdie
-	echo '<pre>'.htmlspecialchars(${1:$query}->builSqlQuery()).'</pre>';var_dump($1->getParams());die(${2:"dump'n'died in ".__FILE__.':'.__LINE__.' → '.__CLASS__.'::'.__FUNCTION__.'()'});${3}
+	echo '<pre>'.htmlspecialchars(${1:$query}->builSqlQuery()).'</pre>';
+	var_dump($1->getParams());
+	die(${2:"dump'n'died in ".__FILE__.':'.__LINE__.' → '.__CLASS__.'::'.__FUNCTION__.'()'});${3}
 snippet <?
 	<?=${1:$foo}?>${2}
 snippet ttr
-	<?=$this->trans('${1}')?>${2}
+	<?=$this->t('${1}')?>${2}
 snippet tr
 	$this->trans('${1}')${2}
 snippet /**

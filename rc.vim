@@ -65,7 +65,7 @@ let Grep_Skip_Files = "tags tags-*"
 
 
 Bundle 'msanders/snipmate.vim'
-let g:snips_author = 'm.augustynowicz'
+let g:snips_author = 'Marek Augustynowicz'
 
 
 Bundle 'tpope/vim-fugitive'
