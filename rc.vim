@@ -47,8 +47,13 @@ Bundle 'scrooloose/syntastic'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
-Bundle 'airblade/vim-gitgutter'
 Bundle 'tomtom/tcomment_vim'
+
+Bundle 'airblade/vim-gitgutter'
+nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>GitGutterNextHunk
+nmap <Leader>hs <Plug>GitGutterStageHunk
+nmap <Leader>hr <Plug>GitGutterRevertHunk
 
 Bundle 'godlygeek/tabular'
 " configuration in ~/.vim/after/plugin/TabularMaps.vim
