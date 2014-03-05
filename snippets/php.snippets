@@ -16,35 +16,29 @@ snippet var
 	${3:protected} ${4:$_foo};${5}
 snippet setget
 	/**
-	 * @var ${1:mixed} ${2:Description}
-	 */
-	protected $_${3:optionName} = ${4:null};
-
-	/**
-	 * Set \`$3\` option
+	 * Set ${1:some thing}
 	 * @author `g:snips_author`
 	 *
-	 * @param $1 $${5:option_name} $2
+	 * @param ${3:mixed} $${4:value}
 	 *
-	 * @return ${7:ThisClassName} $this
+	 * @return void
 	 */
-	public function set${6:OptionName} ($$5)
+	public function set${2:Thing} ($$4)
 	{
-	    ${8:$this->_$3 = $$5};
-	    return $this;
+	    $this->${5:_$4} = $$4;
 	}
-
-
-
+	
+	
+	${6}
 	/**
-	 * Get \`$3\` option
+	 * Get $1
 	 * @author `g:snips_author`
 	 *
-	 * @return $2
+	 * @return $3
 	 */
-	public function get$6 ()
-	{${9}
-	    return $this->_$3;
+	public function get$2 ()
+	{
+	    return $this->$5;
 	}
 snippet tforeach
 	<?php foreach (${1:$values} as ${2:$key => $value}) : ?>
