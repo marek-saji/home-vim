@@ -99,13 +99,16 @@ let g:ctrlp_prompt_mappings = {
   \ }
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_extensions = ['tag',  'mixed']
+" only MRU files in the current working directory
+let g:ctrlp_mruf_relative = 1
 " use current working directory
 let g:ctrlp_working_path_mode = '0'
-let g:ctrlp_max_depth = 16
-let g:ctrlp_max_files = 32768
-let g:ctrlp_custom_ignore = {}
-let g:ctrlp_custom_ignore['dir'] = '\v[\/](\.(git|hg|svn)|node_modules)$'
-let g:ctrlp_custom_ignore['file'] = '\v\.(so|zip|doc|xls|pdf|png|gif|jpe?g|gz)$'
+" let g:ctrlp_max_depth = 32
+" let g:ctrlp_max_files = 65536
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules|cache|DoctrineORMModule\/Proxy|vendor\/.*\/tests?)$',
+  \ 'file': '\v\.(so|zip|doc|xls|pdf|png|gif|jpe?g|gz)$'
+\ }
 noremap <c-o> :CtrlPTag<CR>
 
 
