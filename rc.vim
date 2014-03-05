@@ -46,8 +46,10 @@ Bundle 'scrooloose/syntastic'
 " Bundle 'marijnh/tern_for_vim'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
 Bundle 'tomtom/tcomment_vim'
+
+Bundle 'mattn/gist-vim'
+let g:gist_get_multiplefile = 1
 
 Bundle 'airblade/vim-gitgutter'
 nmap [h <Plug>GitGutterPrevHunk
