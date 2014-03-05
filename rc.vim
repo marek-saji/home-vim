@@ -2,7 +2,7 @@
 "
 " Licensed under MIT, see LICENSE file
 "
-" vim: filetype=vim expandtab softtabstop=2 tabstop=2
+" vim: filetype=vim expandtab softtabstop=2 tabstop=2 shiftwidth=2
 
 " be (VI)iMproved
 set nocompatible
@@ -136,6 +136,23 @@ elseif has("xterm_clipboard") && has("unnamedplus")
   set clipboard=unnamedplus
 endif
 
+"
+" text formatting / layout
+"
+
+set formatoptions=tcrqn
+" Use the 'j' format option when available.
+if v:version ># 703 || v:version ==# 703 && has('patch541')
+    set formatoptions+=j
+endif
+set autoindent
+set smartindent
+set cindent
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set expandtab
+
 
 " Files / Backups
 
@@ -173,7 +190,7 @@ set colorcolumn=+0
 " highlight column at textwidth
 highlight clear ColorColumn
 highlight ColorColumn cterm=underline
-" hightlight characters above textwidth
+" highlight characters above textwidth
 highlight clear OverLength
 highlight OverLength cterm=bold
 execute 'match OverLength /\%'.&textwidth.'v.*/'
@@ -209,44 +226,10 @@ endif
 "set statusline=%F%m%r%h%w\ [%{&ff},%Y]\ [%l,%v\ %p%%]\ [LEN=%L]
 
 
-"
-" text formatting / layout
-"
-
-set formatoptions=tcrqn
-" Use the 'j' format option when available.
-if v:version ># 703 || v:version ==# 703 && has('patch541')
-    set formatoptions+=j
-endif
-set autoindent
-set smartindent
-set cindent
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
-set expandtab
-
 " auto-close curly brackets
 " Try out Raimondi/delimitMate if that's not enough
 inoremap {<CR>  {<CR>}<Esc>O
 inoremap {<CR>} {<CR>}
-
-
-"
-" folding
-"
-
-set foldenable
-" Make folding indent sensitive
-"set foldmethod=syntax
-set foldmethod=indent
-"set foldcolumn=2
-"" Don't autofold anything (but I can still fold manually)
-set foldlevel=100
-" don't open folds when you search into them
-set foldopen-=search
-" don't open folds when you undo in them
-set foldopen-=undo
 
 
 "
@@ -320,6 +303,23 @@ endif
 " Turns on filetype detection, filetype plugins, and filetype indenting
 filetype plugin indent on
 
+
 " Turns on filetype detection if not already on,
 " and then applies filetype-specific highlighting.
 syntax enable
+
+"
+" folding
+"
+
+set foldenable
+" Make folding indent sensitive
+"set foldmethod=syntax
+set foldmethod=indent
+"set foldcolumn=2
+"" Don't autofold anything (but I can still fold manually)
+set foldlevel=100
+" don't open folds when you search into them
+set foldopen-=search
+" don't open folds when you undo in them
+set foldopen-=undo
