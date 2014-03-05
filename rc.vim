@@ -47,6 +47,8 @@ Bundle 'scrooloose/syntastic'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'tomtom/tcomment_vim'
+Bundle "digitaltoad/vim-jade"
+Bundle "camelcasemotion"
 
 Bundle 'mattn/gist-vim'
 let g:gist_get_multiplefile = 1
