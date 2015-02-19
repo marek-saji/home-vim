@@ -130,6 +130,8 @@ set fileformats=unix,dos,mac
 set viminfo+=!
 " none ot thes should be word dividers
 set iskeyword+=_,$,@,%,#,-
+" Use vertical split with diff
+set diffopt+=vertical
 
 if has("clipboard")
   set clipboard=unnamed
