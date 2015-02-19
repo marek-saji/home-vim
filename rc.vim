@@ -106,7 +106,7 @@ let g:ctrlp_working_path_mode = '0'
 " let g:ctrlp_max_depth = 32
 " let g:ctrlp_max_files = 65536
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules|cache|DoctrineORMModule\/Proxy|vendor\/.*\/tests?)$',
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules|cache|vendor\/.*\/tests?)$',
   \ 'file': '\v\.(so|zip|doc|xls|pdf|png|gif|jpe?g|gz)$'
 \ }
 noremap <c-o> :CtrlPTag<CR>
