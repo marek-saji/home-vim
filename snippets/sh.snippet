@@ -1,0 +1,19 @@
+snippet #!
+	#!/bin/${1:sh}
+	# exit if any command fails
+	set -e
+	## kill immediate children, when scrip ends
+	#trap 'ps -opid= --sort=start_time --ppid=$$ | head -n-2 | xargs kill' INT TERM QUIT EXIT
+	# kill all children, when script ends
+	kill_children ()
+	{
+	    PPID=$1
+	    # NOTE: Not POSIX-compatible
+	    for CHILD_PID in $( ps -opid= --sort=start_time --ppid=${PPID} | head -n-1 )
+	    do
+	        kill_children ${CHILD_PID}
+	        kill ${CHILD_PID} || :
+	    done
+	}
+	trap 'kill_children $$' INT TERM QUIT EXIT | head -n-2 | xargs kill 2>/dev/null' INT TERM QUIT EXIT
+	${2}
