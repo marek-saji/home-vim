@@ -114,6 +114,7 @@ noremap <c-o> :CtrlPTag<CR>
 
 
 
+set sessionoptions=buffers,curdir,folds,tabpages
 " don't use tabs at begining of the line
 set nosmarttab
 " don't show options, when tab-completing
