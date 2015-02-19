@@ -251,6 +251,7 @@ command QA qa
 command W w
 command Wq wq
 command WQ wq
+command Bd bd
 
 "map <A-v> viw"+gPb
 "map <A-c> viw"+y
