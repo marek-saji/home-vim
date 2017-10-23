@@ -9,4 +9,5 @@ colorscheme desert
 
 " overwrite some scheme's colours
 highlight ColorColumn guibg=grey30
-highlight OverLength  guibg=black
+highlight OverLength guibg=grey30
+highlight CursorLine guibg=black
