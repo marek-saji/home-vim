@@ -2,29 +2,43 @@
 "
 " Licensed under MIT, see LICENSE file
 "
-" vim: filetype=vim expandtab softtabstop=2 tabstop=2 shiftwidth=2
+" vim-x: filetype=vim expandtab softtabstop=2 tabstop=2 shiftwidth=2
 
 " be (VI)iMproved
 set nocompatible
 
 " UTF-8, anyone?
-if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding=&encoding
-    if $TERM == "linux" || $TERM_PROGRAM == "GLterm"
-      let &termencoding="latin1"
-    elseif $TERM =~ "xterm"
-      let propv = system("xprop -id $WINDOWID -f WM_LOCALE_NAME 8s ' $0' -notype WM_LOCALE_NAME")
-      if propv !~ "WM_LOCALE_NAME .*UTF.*8"
-        let &termencoding="latin1"
-      endif
-    endif
-  endif
-  " use utf-8 internally
-  set encoding=utf-8
-  " change default file encoding when writing new files
-  setglobal fileencoding=utf-8
-endif
+" if has("multi_byte")
+"   if &termencoding == ""
+"     let &termencoding=&encoding
+"     if $TERM == "linux" || $TERM_PROGRAM == "GLterm"
+"       let &termencoding="latin1"
+"     elseif $TERM =~ "xterm"
+"       let propv = system("xprop -id $WINDOWID -f WM_LOCALE_NAME 8s ' $0' -notype WM_LOCALE_NAME")
+"       if propv !~ "WM_LOCALE_NAME .*UTF.*8"
+"         let &termencoding="latin1"
+"       endif
+"     endif
+"   endif
+"   " use utf-8 internally
+"   set encoding=utf-8
+"   " change default file encoding when writing new files
+"   setglobal fileencoding=utf-8
+" endif
+
+" source: https://superuser.com/a/402084
+"if &term =~ '^screen' || &term =~ '^tmux'
+"    " tmux will send xterm-style keys when its xterm-keys option is on
+"    execute "set <xUp>=\e[1;*A"
+"    execute "set <xDown>=\e[1;*B"
+"    execute "set <xRight>=\e[1;*C"
+"    execute "set <xLeft>=\e[1;*D"
+"endif
+"set t_ut=
+
+" Eliminate delay in entering visual mode
+" source https://www.johnhawthorn.com/2012/09/vi-escape-delays/
+set timeoutlen=1000 ttimeoutlen=0
 
 
 " Use vundle to handle plugins
@@ -37,79 +51,159 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-Bundle 'skammer/vim-css-color'
-Bundle 'groenewege/vim-less'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/syntastic'
-" Bundle 'marijnh/tern_for_vim'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'tomtom/tcomment_vim'
-Bundle "digitaltoad/vim-jade"
-Bundle "camelcasemotion"
+Plugin 'ap/vim-css-color'
+Plugin 'tpope/vim-surround'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'mattn/webapi-vim'
+Plugin 'camelcasemotion'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'keepcase.vim'
+" Plugin 'ternjs/tern_for_vim'
+Plugin 'dodie/vim-disapprove-deep-indentation'
 
-Bundle 'mattn/gist-vim'
+
+Plugin 'tomtom/tcomment_vim'
+let g:tcommentOptions = {'whitespace': 'no'}
+
+
+" Plugin 'php.vim'
+Plugin 'BufOnly.vim'
+Plugin 'shawncplus/phpcomplete.vim'
+" Plugin 'm2mdas/phpcomplete-extended'
+" autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
+
+
+Plugin 'scrooloose/syntastic'
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_css_checkers = ['stylelint']
+let g:syntastic_scss_checkers = ['stylelint']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+Plugin 'mattn/gist-vim'
 let g:gist_get_multiplefile = 1
 
-Bundle 'airblade/vim-gitgutter'
+
+Plugin 'airblade/vim-gitgutter'
 nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
 nmap <Leader>hs <Plug>GitGutterStageHunk
 nmap <Leader>hr <Plug>GitGutterRevertHunk
 
-Bundle 'godlygeek/tabular'
-" configuration in ~/.vim/after/plugin/TabularMaps.vim
 
-
-Bundle 'grep.vim'
+Plugin 'grep.vim'
 let Grep_Skip_Dirs = "RCS CVS SCCS .svn .git"
 let Grep_Skip_Files = "tags tags-*"
 
 
-Bundle 'msanders/snipmate.vim'
+"Plugin 'mileszs/ack.vim'
+"if executable('ag')
+"    let g:ackprg = 'ag --vimgrep'
+"endif
+
+
+"Plugin 'msanders/snipmate.vim'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Plugin "tomtom/tlib_vim"
+Plugin 'garbas/vim-snipmate'
 let g:snips_author = 'Marek Augustynowicz'
 
 
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+Plugin 'tpope/vim-rhubarb'
+
 " auto open quickfix window
 autocmd QuickFixCmdPost *grep* cwindow
 autocmd QuickFixCmdPost *log* cwindow
+" Adjust quickfix window height to content
+" https://gist.github.com/juanpabloaj/5845848
+au FileType qf call AdjustWindowHeight(2, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+    let l = 1
+    let n_lines = 0
+    let w_width = winwidth(0)
+    while l <= line('$')
+        " number to float for division
+        let l_len = strlen(getline(l)) + 0.0
+        let line_width = l_len/w_width
+        let n_lines += float2nr(ceil(line_width))
+        let l += 1
+    endw
+    exe max([min([n_lines, a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
 
 
-Bundle 'sjl/gundo.vim'
+Plugin 'sjl/gundo.vim'
 nnoremap <C-z> :GundoToggle<CR>
 
 
-Bundle 'joonty/vdebug'
-let g:vdebug_options = {}
-" don't break, when connection is made
-let g:vdebug_options['break_on_open'] = 0
-let g:vdebug_options['port'] = 9001
+Plugin 'joonty/vdebug'
+"let g:vdebug_options = {}
+"" break, when connection is made?
+"let g:vdebug_options['break_on_open'] = 1
+"let g:vdebug_options['port'] = 9001
+"let g:vdebug_options['server'] = '192.168.13.101'
+"let g:vdebug_options['debug_file'] = '~/local/var/log/vdebug.log'
+""let g:vdebug_options['debug_file_level'] = 2
+"let g:vdebug_options['ide_key'] = 'vdebug'
+"let g:vdebug_options = {
+"    \ 'debug_file': '~/local/var/log/vdebug.log',
+"    \ 'debug_file_level': 2,
+"    \ 'watch_window_style': 'expanded',
+"    \ 'marker_default': '*',
+"    \ 'continuous_mode': 0,
+"    \ 'ide_key': '',
+"    \ 'break_on_open': 1,
+"    \ 'on_close': 'detach',
+"    \ 'path_maps': {'/vagrant': '~/src/dietlabs', '/var/www': '~/src/dietlabs'},
+"    \ 'marker_closed_tree': '+',
+"    \ 'timeout': 20,
+"    \ 'port': 9002,
+"    \ 'marker_open_tree': '-',
+"    \ 'debug_window_level': 1,
+"    \ 'server': '192.168.13.101' }
+" let g:vdebug_options = {
+"     \ 'debug_file': '~/local/var/log/vdebug.log',
+"     \ 'debug_file_level': 2,
+"     \ 'debug_window_level': 2,
+"     \ 'break_on_open': 1,
+"     \ 'path_maps': {'/var/www/dietlabs': '.'},
+"     \ 'timeout': 20,
+"     \ 'ide_key': '',
+"     \ 'port': 9000,
+"     \ 'server': '172.17.0.2' }
 
 
-Bundle 'kien/ctrlp.vim'
-let g:ctrlp_prompt_mappings = {
-    \ 'PrtSelectMove("t")':   [],
-    \ 'PrtSelectMove("b")':   [],
-    \ 'PrtCurStart()':        ['<Home>', '<kHome>'],
-    \ 'PrtCurEnd()':          ['<End>', '<kEnd>'],
-  \ }
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_extensions = ['tag',  'mixed']
-" only MRU files in the current working directory
-let g:ctrlp_mruf_relative = 1
-" use current working directory
-let g:ctrlp_working_path_mode = '0'
-" let g:ctrlp_max_depth = 32
-" let g:ctrlp_max_files = 65536
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules|cache|vendor\/.*\/tests?)$',
-  \ 'file': '\v\.(so|zip|doc|xls|pdf|png|gif|jpe?g|gz)$'
-\ }
-noremap <c-o> :CtrlPTag<CR>
+set rtp+=/home/saji/local/src/fzf
+Plugin 'junegunn/fzf.vim'
+
+
+"Plugin 'kien/ctrlp.vim'
+"let g:ctrlp_prompt_mappings = {
+"    \ 'PrtSelectMove("t")':   [],
+"    \ 'PrtSelectMove("b")':   [],
+"    \ 'PrtCurStart()':        ['<Home>', '<kHome>'],
+"    \ 'PrtCurEnd()':          ['<End>', '<kEnd>'],
+"  \ }
+"let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_extensions = ['tag',  'mixed']
+"" only MRU files in the current working directory
+"let g:ctrlp_mruf_relative = 1
+"" use current working directory
+"let g:ctrlp_working_path_mode = '0'
+"" let g:ctrlp_max_depth = 0
+"let g:ctrlp_max_files = 0
+"let g:ctrlp_custom_ignore = {
+"  \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules|cache|vendor\/.*\/tests?)$',
+"  \ 'file': '\v(\.(so|zip|doc|xls|pdf|png|gif|jpe?g|gz|mo)|\~)$'
+"\ }
+"noremap <c-o> :CtrlPTag<CR>
 
 
 
@@ -130,7 +224,10 @@ set fileformats=unix,dos,mac
 set viminfo+=!
 " none ot thes should be word dividers
 set iskeyword+=_,$,@,%,#,-
-" Use vertical split with diff
+
+" keep active line the middle of the screen
+set scrolloff=999
+
 set diffopt+=vertical
 
 if has("clipboard")
@@ -165,7 +262,6 @@ set backupdir=~/.cache/vim/backup
 set directory=~/.cache/vim/temp
 set makeef=error.err
 
-
 "
 " vim UI
 "
@@ -182,12 +278,17 @@ set backspace=indent,eol,start
 set whichwrap+=<,>,h,l
 " use mouse everywhere
 set mouse=a
+" source: comment in http://unix.stackexchange.com/a/50735
+set ttymouse=xterm2
 " shortens messages to avoid 'press a key' prompt
 set shortmess=atI
 
 set textwidth=72
 " don't break already long lines
 set formatoptions+=l
+" hightlight current line in black
+highlight clear CursorLine
+highlight CursorLine ctermbg=234
 " relative to textwidth
 set colorcolumn=+0
 " highlight column at textwidth
@@ -196,12 +297,10 @@ highlight ColorColumn cterm=underline
 " highlight characters above textwidth
 highlight clear OverLength
 highlight OverLength cterm=bold
+"highlight OverLength start="[9m" stop="[0m"
 execute 'match OverLength /\%'.&textwidth.'v.*/'
 " colors for GUI set in .gvimrc
 
-" hightlight current line in black
-highlight clear CursorLine
-highlight CursorLine ctermbg=black
 set cursorline
 
 " always show gutter (sign column)
@@ -282,6 +381,7 @@ augroup BWCCreateDir
 augroup END
 
 
+
 " term and screen titles
 if has("statusline") && has("title")
   if &term =~ 'screen\(\.\(xterm\|rxvt\)\(-\(256\)\?color\)\?\)\?'
@@ -311,6 +411,7 @@ filetype plugin indent on
 " Turns on filetype detection if not already on,
 " and then applies filetype-specific highlighting.
 syntax enable
+
 
 "
 " folding
