@@ -10,3 +10,6 @@
 [submodule "pack/saji/start/fzf"]
 	path = pack/saji/start/fzf
 	url = https://github.com/junegunn/fzf.vim.git
+[submodule "pack/saji/start/grep"]
+	path = pack/saji/start/grep
+	url = https://github.com/yegappan/grep.git
