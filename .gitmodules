@@ -4,3 +4,6 @@
 [submodule "pack/saji/start/ale"]
 	path = pack/saji/start/ale
 	url = https://github.com/dense-analysis/ale.git
+[submodule "pack/saji/start/ctrlp"]
+	path = pack/saji/start/ctrlp
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
