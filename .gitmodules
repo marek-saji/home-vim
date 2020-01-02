@@ -7,6 +7,3 @@
 [submodule "pack/saji/start/grep"]
 	path = pack/saji/start/grep
 	url = https://github.com/yegappan/grep.git
-[submodule "pack/saji/start/coc"]
-	path = pack/saji/start/coc
-	url = https://github.com/neoclide/coc.nvim.git
