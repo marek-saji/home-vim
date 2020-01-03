@@ -11,6 +11,3 @@
 	path = pack/saji/start/coc
 	url = https://github.com/neoclide/coc.nvim.git
 	branch = release
-[submodule "pack/saji/start/ale"]
-	path = pack/saji/start/ale
-	url = https://github.com/dense-analysis/ale.git
