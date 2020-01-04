@@ -14,3 +14,6 @@
 [submodule "pack/saji/start/fugitive"]
 	path = pack/saji/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "/home/saji/.vim/pack/saji/start/vim-polyglot"]
+	path = /home/saji/.vim/pack/saji/start/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot.git
