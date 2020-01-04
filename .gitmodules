@@ -26,3 +26,6 @@
 [submodule "/home/saji/.vim/pack/saji/start/fzf"]
 	path = /home/saji/.vim/pack/saji/start/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "/home/saji/.vim/pack/saji/start/vim-gitgutter"]
+	path = /home/saji/.vim/pack/saji/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
