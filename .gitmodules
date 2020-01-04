@@ -17,3 +17,6 @@
 [submodule "/home/saji/.vim/pack/saji/start/vim-polyglot"]
 	path = /home/saji/.vim/pack/saji/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
+[submodule "/home/saji/.vim/pack/saji/start/ale"]
+	path = /home/saji/.vim/pack/saji/start/ale
+	url = https://github.com/dense-analysis/ale.git
