@@ -20,3 +20,6 @@
 [submodule "/home/saji/.vim/pack/saji/start/ale"]
 	path = /home/saji/.vim/pack/saji/start/ale
 	url = https://github.com/dense-analysis/ale.git
+[submodule "/home/saji/.vim/pack/saji/start/vim-surround"]
+	path = /home/saji/.vim/pack/saji/start/vim-surround
+	url = https://github.com/tpope/vim-surround.git
