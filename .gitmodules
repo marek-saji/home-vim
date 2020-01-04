@@ -23,3 +23,6 @@
 [submodule "/home/saji/.vim/pack/saji/start/fzf.vim"]
 	path = /home/saji/.vim/pack/saji/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
+[submodule "/home/saji/.vim/pack/saji/start/fzf"]
+	path = /home/saji/.vim/pack/saji/start/fzf
+	url = https://github.com/junegunn/fzf.git
