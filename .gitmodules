@@ -29,3 +29,6 @@
 [submodule "/home/saji/.vim/pack/saji/start/vim-gitgutter"]
 	path = /home/saji/.vim/pack/saji/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "/home/saji/.vim/pack/saji/start/diffconflicts"]
+	path = /home/saji/.vim/pack/saji/start/diffconflicts
+	url = https://github.com/whiteinge/diffconflicts
