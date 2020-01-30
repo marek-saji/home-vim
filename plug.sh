@@ -1,8 +1,10 @@
 #!/bin/sh
 set -e
 
+cd "$( cd "$( dirname "$0" )" && pwd -P )"
+
 PACK=saji
-PACK_DIR="$( cd "$( dirname "$0" )" && pwd -P )/pack/$PACK"
+PACK_DIR="./pack/$PACK"
 
 COMMAND="$1"
 if [ "$#" -gt 0 ]

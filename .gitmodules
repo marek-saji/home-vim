@@ -11,33 +11,33 @@
 [submodule "pack/saji/start/fugitive"]
 	path = pack/saji/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "/home/saji/.vim/pack/saji/start/vim-polyglot"]
-	path = /home/saji/.vim/pack/saji/start/vim-polyglot
+[submodule "pack/saji/start/vim-polyglot"]
+	path = pack/saji/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
-[submodule "/home/saji/.vim/pack/saji/start/ale"]
-	path = /home/saji/.vim/pack/saji/start/ale
+[submodule "pack/saji/start/ale"]
+	path = pack/saji/start/ale
 	url = https://github.com/dense-analysis/ale.git
-[submodule "/home/saji/.vim/pack/saji/start/vim-surround"]
-	path = /home/saji/.vim/pack/saji/start/vim-surround
+[submodule "pack/saji/start/vim-surround"]
+	path = pack/saji/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "/home/saji/.vim/pack/saji/start/fzf.vim"]
-	path = /home/saji/.vim/pack/saji/start/fzf.vim
+[submodule "pack/saji/start/fzf.vim"]
+	path = pack/saji/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
-[submodule "/home/saji/.vim/pack/saji/start/fzf"]
-	path = /home/saji/.vim/pack/saji/start/fzf
+[submodule "pack/saji/start/fzf"]
+	path = pack/saji/start/fzf
 	url = https://github.com/junegunn/fzf.git
-[submodule "/home/saji/.vim/pack/saji/start/vim-gitgutter"]
-	path = /home/saji/.vim/pack/saji/start/vim-gitgutter
+[submodule "pack/saji/start/vim-gitgutter"]
+	path = pack/saji/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
-[submodule "/home/saji/.vim/pack/saji/start/diffconflicts"]
-	path = /home/saji/.vim/pack/saji/start/diffconflicts
+[submodule "pack/saji/start/diffconflicts"]
+	path = pack/saji/start/diffconflicts
 	url = https://github.com/whiteinge/diffconflicts
-[submodule "/home/saji/.vim/pack/saji/start/tcomment_vim"]
-	path = /home/saji/.vim/pack/saji/start/tcomment_vim
+[submodule "pack/saji/start/tcomment_vim"]
+	path = pack/saji/start/tcomment_vim
 	url = https://github.com/tomtom/tcomment_vim
-[submodule "/home/saji/.vim/pack/saji/start/keepcase.vim"]
-	path = /home/saji/.vim/pack/saji/start/keepcase.vim
+[submodule "pack/saji/start/keepcase.vim"]
+	path = pack/saji/start/keepcase.vim
 	url = https://github.com/vim-scripts/keepcase.vim
-[submodule "/home/saji/.vim/pack/saji/start/CamelCaseMotion"]
-	path = /home/saji/.vim/pack/saji/start/CamelCaseMotion
+[submodule "pack/saji/start/CamelCaseMotion"]
+	path = pack/saji/start/CamelCaseMotion
 	url = https://github.com/bkad/CamelCaseMotion.git
