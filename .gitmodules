@@ -38,3 +38,6 @@
 [submodule "/home/saji/.vim/pack/saji/start/keepcase.vim"]
 	path = /home/saji/.vim/pack/saji/start/keepcase.vim
 	url = https://github.com/vim-scripts/keepcase.vim
+[submodule "/home/saji/.vim/pack/saji/start/CamelCaseMotion"]
+	path = /home/saji/.vim/pack/saji/start/CamelCaseMotion
+	url = https://github.com/bkad/CamelCaseMotion.git
