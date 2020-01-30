@@ -32,3 +32,6 @@
 [submodule "/home/saji/.vim/pack/saji/start/diffconflicts"]
 	path = /home/saji/.vim/pack/saji/start/diffconflicts
 	url = https://github.com/whiteinge/diffconflicts
+[submodule "/home/saji/.vim/pack/saji/start/tcomment_vim"]
+	path = /home/saji/.vim/pack/saji/start/tcomment_vim
+	url = https://github.com/tomtom/tcomment_vim
