@@ -35,3 +35,6 @@
 [submodule "/home/saji/.vim/pack/saji/start/tcomment_vim"]
 	path = /home/saji/.vim/pack/saji/start/tcomment_vim
 	url = https://github.com/tomtom/tcomment_vim
+[submodule "/home/saji/.vim/pack/saji/start/keepcase.vim"]
+	path = /home/saji/.vim/pack/saji/start/keepcase.vim
+	url = https://github.com/vim-scripts/keepcase.vim
