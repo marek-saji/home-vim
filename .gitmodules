@@ -1,6 +1,3 @@
-[submodule "pack/ale"]
-	path = pack/ale
-	url = https://github.com/dense-analysis/ale.git
 [submodule "pack/saji/start/grep"]
 	path = pack/saji/start/grep
 	url = https://github.com/yegappan/grep.git
