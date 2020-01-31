@@ -38,3 +38,6 @@
 [submodule "pack/saji/start/CamelCaseMotion"]
 	path = pack/saji/start/CamelCaseMotion
 	url = https://github.com/bkad/CamelCaseMotion.git
+[submodule "pack/saji/start/editorconfig-vim"]
+	path = pack/saji/start/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim
