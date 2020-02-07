@@ -41,3 +41,6 @@
 [submodule "pack/saji/start/editorconfig-vim"]
 	path = pack/saji/start/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim
+[submodule "pack/saji/start/vim-rhubarb"]
+	path = pack/saji/start/vim-rhubarb
+	url = https://github.com/tpope/vim-rhubarb.git
