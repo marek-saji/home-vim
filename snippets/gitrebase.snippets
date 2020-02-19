@@ -1,0 +1,4 @@
+snippet commit
+	if ! git diff --quiet; then git commit --amend --no-edit .; fi
+snippet update-snapshots
+	exec yarn --silent test --silent --no-coverage -u $( git grep -E -l 'initStoryshots|toMatchSnapshot' '*.test.js' ) && if ! git diff --quiet; then git commit --amend --no-edit .; fi
