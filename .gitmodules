@@ -47,3 +47,6 @@
 [submodule "pack/saji/start/vim-gist"]
 	path = pack/saji/start/vim-gist
 	url = git@github.com:mattn/vim-gist.git
+[submodule "pack/saji/start/webapi-vim"]
+	path = pack/saji/start/webapi-vim
+	url = git@github.com:mattn/webapi-vim.git
