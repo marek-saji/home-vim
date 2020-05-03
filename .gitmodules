@@ -50,6 +50,3 @@
 [submodule "pack/saji/start/webapi-vim"]
 	path = pack/saji/start/webapi-vim
 	url = git@github.com:mattn/webapi-vim.git
-[submodule "pack/saji/start/vim-syntax-vidir-ls"]
-	path = pack/saji/start/vim-syntax-vidir-ls
-	url = https://github.com/trapd00r/vim-syntax-vidir-ls
