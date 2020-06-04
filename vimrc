@@ -1,9 +1,16 @@
 " vim: shiftwidth=4 tabstop=4 expandtab
 
-" TODO Detect UTF-8 terminal
-let g:errorSign = '‼️ '
-let g:warnSign = '⚠️ '
-let g:infoSign = 'ℹ '
+if &encoding == 'utf-8'
+    let g:errorSign = '‼️ '
+    let g:warnSign = '⚠️ '
+    let g:infoSign = 'ℹ '
+    let g:hintSign = '💡'
+else
+    let g:errorSign = 'E'
+    let g:warnSign = 'W'
+    let g:infoSign = 'I'
+    let g:hintSign = 'i'
+endif
 
 " be (vi)improved
 set nocompatible
@@ -142,6 +149,18 @@ augroup BWCCreateDir
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
+" Status line
+
+function! LinterStatus() abort
+    return coc#status()
+endfunction
+
+function! GitStatus() abort
+    return fugitive#statusline()
+endfunction
+
+set statusline=%<%f\ %h%m%r\ %{LinterStatus()}%=\ %{GitStatus()}\ %-14.(%l,%c%V%)\ %P
+
 
 
 " Plugins stuff
@@ -163,57 +182,9 @@ nmap ]h <Plug>(GitGutterNextHunk)
 nmap <Leader>hs <Plug>(GitGutterStageHunk)
 nmap <Leader>hr <Plug>(GitGutterRevertHunk)
 
-" ale: signs
-let g:ale_sign_error = g:errorSign
-let g:ale_sign_warning = g:warnSign
-let g:ale_sign_info = g:infoSign
-highlight clear ALEErrorSign
-highlight ALEErrorSign ctermfg=red guifg=red
-highlight clear ALEStyleError
-highlight ALEStyleError ctermfg=yellow guifg=yellow
-highlight clear ALEWarningSign
-highlight ALEWarningSign ctermfg=yellow guifg=yellow
-highlight clear ALEInfoSign
-highlight ALEInfoSign ctermfg=blue guifg=blue
-" ale: fixer
-if !exists('g:ale_fixers')
-    let g:ale_fixers = {}
-endif
-let g:ale_fixers['javascript'] = ['eslint']
-let g:ale_fixers['typescript'] = ['eslint']
-"let g:ale_fixers['css'] = ['stylelint']
-"let g:ale_fixers['scss'] = ['stylelint']
-let g:ale_fix_on_save = 1
-" ale: don’t automatically open loclist
-"      Would be nice to do that, but fock has too many
-"      TS errors
-let g:ale_open_list = 0
-" ale: statusline
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
-
-    if l:counts.total == 0
-        return ''
-    endif
-
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
-
-    let l:msg = ''
-
-    if all_non_errors != 0
-        let l:msg .= printf(' %s%d', g:warnSign, all_non_errors)
-    endif
-
-    if all_errors != 0
-        let l:msg .= printf(' %s%d', g:errorSign, all_errors)
-    endif
-
-    return l:msg
-endfunction
-
-" ale, fugutive: statusline FIXME
-set statusline=%<%f%{LinterStatus()}\ %h%m%r%=\ %{fugitive#statusline()}\ %-14.(%l,%c%V%)\ %P
+" coc
+let g:coc_status_error_sign = g:errorSign
+let g:coc_status_warning_sign = g:warnSign
 
 augroup TODO
     function TodoBufRead ()
@@ -229,4 +200,8 @@ augroup end
 
 augroup bashfc
     autocmd BufRead /tmp/bash-fc.* setlocal wrap
+augroup end
+
+augroup coc-settings
+    autocmd BufRead coc-settings.json syntax match Comment +\/\/.\+$+
 augroup end

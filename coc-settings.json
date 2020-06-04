@@ -1,3 +1,14 @@
 {
+  // Duplicated from the beginning of vimrc 😒
+  "diagnostic.errorSign": "‼️",
+  "diagnostic.warningSign": "⚠️",
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.hintSign": "💡",
+
+  "diagnostic.checkCurrentLine": true,
+
+
+  // Plugins
+
   "eslint.autoFixOnSave": true
 }
