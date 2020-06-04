@@ -1,7 +1,7 @@
 " vim: shiftwidth=4 tabstop=4 expandtab
 
 if &encoding == 'utf-8'
-    let g:errorSign = '‼️ '
+    let g:errorSign = '🔥'
     let g:warnSign = '⚠️ '
     let g:infoSign = 'ℹ '
     let g:hintSign = '💡'
