@@ -8,6 +8,9 @@ let g:infoSign = 'ℹ '
 " be (vi)improved
 set nocompatible
 
+" history lines to remember
+set history=4096
+
 " line numbers
 set number
 
@@ -30,6 +33,9 @@ highlight clear SignColumn
 " highlight current line number in black
 "highlight CursorLineNr ctermbg=black guibg=black
 set cursorline
+
+" don’t wrap long lines
+set nowrap
 
 " shortens messages to avoid 'press a key' prompt
 set shortmess=atI
@@ -74,6 +80,9 @@ endif
 set mouse=a
 " source: comment in http://unix.stackexchange.com/a/50735
 set ttymouse=xterm2
+
+" Load ftplugins
+filetype plugin on
 
 " auto open quickfix window
 autocmd QuickFixCmdPost *grep* cwindow
