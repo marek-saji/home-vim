@@ -46,7 +46,10 @@ remove ()
     set -x
     git submodule deinit "$PACK_DIR/$LOAD_POLICY/$NAME"
     git rm "$PACK_DIR/$LOAD_POLICY/$NAME"
-    trash-put "$PACK_DIR/$LOAD_POLICY/$NAME"
+    if [ -e "$PACK_DIR/$LOAD_POLICY/$NAME" ]
+    then
+        trash-put "$PACK_DIR/$LOAD_POLICY/$NAME"
+    fi
     git commit -m "remove plugin: $NAME"
 }
 
