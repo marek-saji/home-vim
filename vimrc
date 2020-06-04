@@ -191,8 +191,15 @@ nmap <Leader>hs <Plug>(GitGutterStageHunk)
 nmap <Leader>hr <Plug>(GitGutterRevertHunk)
 
 " coc
+let g:coc_disable_startup_warning = 1
 let g:coc_status_error_sign = g:errorSign
 let g:coc_status_warning_sign = g:warnSign
+" In vim 8.1.1228 we’ll be able to do this:
+" set tagfunc=CocTagFunc
+" https://github.com/vim/vim/commit/45e18cbdc40afd8144d20dcc07ad2d981636f4c9
+" https://github.com/neoclide/coc.nvim/pull/1380
+" but for now just remap Ctrl-]
+noremap <c-]> :call CocActionAsync('jumpDefinition')<CR>
 
 augroup TODO
     function TodoBufRead ()
