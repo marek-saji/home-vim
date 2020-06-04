@@ -11,9 +11,6 @@
 [submodule "pack/saji/start/vim-polyglot"]
 	path = pack/saji/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
-[submodule "pack/saji/start/ale"]
-	path = pack/saji/start/ale
-	url = https://github.com/dense-analysis/ale.git
 [submodule "pack/saji/start/vim-surround"]
 	path = pack/saji/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
