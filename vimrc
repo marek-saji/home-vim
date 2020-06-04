@@ -24,6 +24,9 @@ set number
 " allow hidden, unsaved buffers
 set hidden
 
+" terminals should be dark
+set bg=dark
+
 " always show sign column
 set signcolumn=yes
 
@@ -33,13 +36,23 @@ set cmdheight=2
 " always show status line
 set laststatus=2
 
-set list listchars=tab:⇒·,trail:◦,nbsp:•,extends:▻
+if &encoding == 'utf-8'
+    set list listchars=tab:⇒·,trail:◦,nbsp:•,extends:▻
+endif
+
+" highlight searched for phrases
+set hlsearch
+" highlight search as you type
+set incsearch
 
 " transparent signcolumn
 highlight clear SignColumn
-" highlight current line number in black
-"highlight CursorLineNr ctermbg=black guibg=black
+" highlight current line in (almost) black
 set cursorline
+highlight CursorLineNr cterm=none ctermbg=black
+highlight CursorLine cterm=none ctermbg=black
+
+highlight Todo cterm=reverse ctermfg=yellow ctermbg=black
 
 " don’t wrap long lines
 set nowrap
@@ -49,11 +62,6 @@ set shortmess=atI
 
 " keep active line the middle of the screen
 set scrolloff=999
-
-" highlight searched for phrases
-set hlsearch
-" highlight search as you type
-set incsearch
 
 " remove comment prefix when joining lines
 set formatoptions+=j
@@ -203,5 +211,5 @@ augroup bashfc
 augroup end
 
 augroup coc-settings
-    autocmd BufRead coc-settings.json syntax match Comment +\/\/.\+$+
+    autocmd BufRead coc-settings.json syntax match Comment ~//.*~
 augroup end
