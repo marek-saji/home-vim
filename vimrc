@@ -214,3 +214,19 @@ endfunction
 
 " ale, fugutive: statusline FIXME
 set statusline=%<%f%{LinterStatus()}\ %h%m%r%=\ %{fugitive#statusline()}\ %-14.(%l,%c%V%)\ %P
+
+augroup TODO
+    function TodoBufRead ()
+        " Show less UI
+        setlocal cmdheight=1 noshowcmd laststatus=0 nonumber signcolumn=no spell
+        " Restore previous position (if valid)
+        if line("'\"") > 0 && line("'\"") <= line("$")
+            exe "normal! g`\""
+        endif
+    endfunction
+    autocmd BufRead TODO{,.md,.markdown,.txt} call TodoBufRead()
+augroup end
+
+augroup bashfc
+    autocmd BufRead /tmp/bash-fc.* setlocal wrap
+augroup end
