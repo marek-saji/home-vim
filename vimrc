@@ -21,6 +21,9 @@ set history=4096
 " line numbers
 set number
 
+" British
+set spelllang=en_gb
+
 " allow hidden, unsaved buffers
 set hidden
 
@@ -45,7 +48,7 @@ set hlsearch
 " highlight search as you type
 set incsearch
 
-" transparent signcolumn
+" transparent sign column
 highlight clear SignColumn
 " highlight current line in (almost) black
 set cursorline
@@ -171,7 +174,7 @@ set statusline=%<%f\ %h%m%r\ %{LinterStatus()}%=\ %{GitStatus()}\ %-14.(%l,%c%V%
 
 
 
-" Plugins stuff
+" Plug–ins stuff
 
 " Change default command to omit more files
 command! -bang -nargs=? -complete=dir
