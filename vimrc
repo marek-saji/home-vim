@@ -205,6 +205,7 @@ let g:coc_global_extensions = [
     \ 'coc-eslint',
     \ 'coc-html',
     \ 'coc-json',
+    \ 'coc-stylelint',
     \ 'coc-svg',
     \ 'coc-tsserver',
 \ ]

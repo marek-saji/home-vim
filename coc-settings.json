@@ -12,5 +12,9 @@
 
   // Plugins
 
-  "eslint.autoFixOnSave": true
+  "eslint.autoFixOnSave": true,
+
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  }
 }
