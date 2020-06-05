@@ -3,7 +3,7 @@
 if &encoding == 'utf-8'
     let g:errorSign = '🔥'
     let g:warnSign = '⚠️ '
-    let g:infoSign = 'ℹ '
+    let g:infoSign = '🛈 '
     let g:hintSign = '💡'
 else
     let g:errorSign = 'E'

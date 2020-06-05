@@ -2,7 +2,7 @@
   // Duplicated from the beginning of vimrc 😒
   "diagnostic.errorSign": "🔥",
   "diagnostic.warningSign": "⚠️",
-  "diagnostic.infoSign": "ℹ",
+  "diagnostic.infoSign": "🛈",
   "diagnostic.hintSign": "💡",
 
   "diagnostic.checkCurrentLine": true,
