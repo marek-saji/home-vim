@@ -1,4 +1,6 @@
 {
+  "npm.binPath": "/usr/bin/npm",
+
   // Duplicated from the beginning of vimrc 😒
   "diagnostic.errorSign": "🔥",
   "diagnostic.warningSign": "⚠️",

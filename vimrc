@@ -196,6 +196,9 @@ nmap <Leader>hr <Plug>(GitGutterRevertHunk)
 " coc: Stop nagging about upgrading vim
 let g:coc_disable_startup_warning = 1
 
+" coc: Don’t use nvm overwrites
+let g:coc_node_path = '/usr/bin/node'
+
 let g:coc_global_extensions = [
     \ 'coc-css',
     \ 'coc-diagnostic',
