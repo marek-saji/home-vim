@@ -47,3 +47,6 @@
 [submodule "pack/saji/start/webapi-vim"]
 	path = pack/saji/start/webapi-vim
 	url = git@github.com:mattn/webapi-vim.git
+[submodule "pack/saji/start/coc-diagnostic"]
+	path = pack/saji/start/coc-diagnostic
+	url = https://github.com/iamcco/coc-diagnostic
