@@ -193,10 +193,24 @@ nmap ]h <Plug>(GitGutterNextHunk)
 nmap <Leader>hs <Plug>(GitGutterStageHunk)
 nmap <Leader>hr <Plug>(GitGutterRevertHunk)
 
-" coc
+" coc: Stop nagging about upgrading vim
 let g:coc_disable_startup_warning = 1
+
+let g:coc_global_extensions = [
+    \ 'coc-css',
+    \ 'coc-diagnostic',
+    \ 'coc-eslint',
+    \ 'coc-html',
+    \ 'coc-json',
+    \ 'coc-svg',
+    \ 'coc-tsserver',
+\ ]
+
+" coc: Custom signs
 let g:coc_status_error_sign = g:errorSign
 let g:coc_status_warning_sign = g:warnSign
+
+" coc: Jump to definition
 " In vim 8.1.1228 we’ll be able to do this:
 " set tagfunc=CocTagFunc
 " https://github.com/vim/vim/commit/45e18cbdc40afd8144d20dcc07ad2d981636f4c9
