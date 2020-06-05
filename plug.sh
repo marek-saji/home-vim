@@ -57,7 +57,7 @@ upgrade ()
 {
     set -x
     git submodule update --remote --merge
-    git commit
+    git commit "$PACK_DIR"
 }
 
 case "$COMMAND" in
