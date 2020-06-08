@@ -50,3 +50,6 @@
 [submodule "pack/saji/start/coc-diagnostic"]
 	path = pack/saji/start/coc-diagnostic
 	url = https://github.com/iamcco/coc-diagnostic
+[submodule "pack/saji/start/confluencewiki.vim"]
+	path = pack/saji/start/confluencewiki.vim
+	url = https://github.com/vim-scripts/confluencewiki.vim
