@@ -53,6 +53,3 @@
 [submodule "pack/saji/start/confluencewiki.vim"]
 	path = pack/saji/start/confluencewiki.vim
 	url = https://github.com/vim-scripts/confluencewiki.vim
-[submodule "pack/saji/start/vim-one"]
-	path = pack/saji/start/vim-one
-	url = git@github.com:rakr/vim-one.git
