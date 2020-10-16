@@ -53,3 +53,6 @@
 [submodule "pack/saji/start/confluencewiki.vim"]
 	path = pack/saji/start/confluencewiki.vim
 	url = https://github.com/vim-scripts/confluencewiki.vim
+[submodule "pack/saji/start/vim-varnish"]
+	path = pack/saji/start/vim-varnish
+	url = https://github.com/fgsch/vim-varnish
