@@ -8,6 +8,9 @@
   "diagnostic.hintSign": "💡",
 
   "diagnostic.checkCurrentLine": true,
+  "diagnostic.messageTarget": "echo",
+
+  "signature.target": "echo",
 
 
   // Plugins
