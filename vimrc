@@ -22,7 +22,7 @@ set history=4096
 set number
 
 " British
-set spelllang=en_gb
+set spelllang=en_gb,en,pl
 
 " allow hidden, unsaved buffers
 set hidden
