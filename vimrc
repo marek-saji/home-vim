@@ -44,10 +44,20 @@ if &encoding == 'utf-8'
     set listchars=tab:⇒·,trail:◦,nbsp:•,extends:▻
 endif
 
+" GUI: select font
+set guifont=JetBrains\ Mono\ Regular\ 12
+" GUI: hide toolbar and menubar
+set guioptions-=T
+set guioptions-=m
+
 " highlight searched for phrases
 set hlsearch
 " highlight search as you type
 set incsearch
+
+colorscheme default
+set background=dark
+highlight Normal guifg=white guibg=black
 
 " transparent sign column
 highlight clear SignColumn
