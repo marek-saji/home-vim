@@ -241,3 +241,7 @@ augroup end
 augroup coc-settings
     autocmd BufRead coc-settings.json syntax match Comment ~//.*~
 augroup end
+
+augroup jira
+    autocmd BufRead jira setlocal ft=confluencewiki spell wrap
+augroup end
