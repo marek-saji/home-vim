@@ -39,8 +39,9 @@ set cmdheight=2
 " always show status line
 set laststatus=2
 
+set list
 if &encoding == 'utf-8'
-    set list listchars=tab:⇒·,trail:◦,nbsp:•,extends:▻
+    set listchars=tab:⇒·,trail:◦,nbsp:•,extends:▻
 endif
 
 " highlight searched for phrases
