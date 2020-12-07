@@ -245,6 +245,11 @@ augroup TODO
     autocmd BufRead TODO{,.md,.markdown,.txt} call TodoBufRead()
 augroup end
 
+augroup jest-snapsots
+    autocmd BufRead *.js.snap setlocal ft=javascript
+    autocmd BufRead *.storyshot setlocal ft=javascript
+augroup end
+
 augroup bashfc
     autocmd BufRead /tmp/bash-fc.* setlocal wrap
 augroup end
