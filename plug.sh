@@ -6,11 +6,6 @@ cd "$( cd "$( dirname "$0" )" && pwd -P )"
 PACK=saji
 PACK_DIR="./pack/$PACK"
 
-COMMAND="$1"
-if [ "$#" -gt 0 ]
-then
-    shift
-fi
 
 help ()
 {
@@ -23,6 +18,36 @@ help ()
     printf "\n"
     printf "  NAME may be left empty to get it from GIT_URL\n"
     printf "  LOAD_POLICY is 'start' (default) or 'opt'\n"
+}
+
+bash_autocomplete () # FIXME
+{
+    cmd="$1"
+    prefix="$2"
+
+    cmd_len="${#cmd}"
+    # shellcheck disable=SC2039
+    line="$( echo "$COMP_LINE" | cut -b$(( cmd_len + 1 ))- )"
+    # shellcheck disable=SC2086
+    set -- $line
+    subcmd="$1"
+
+    case "$subcmd" in
+        "add"|"update" )
+            ;;
+        "remove" )
+            for load_policy in start opt
+            do
+                find ./pack/saji/$load_policy/ \
+                    -mindepth 1 -maxdepth 1 \
+                    -printf "%f $load_policy\n" \
+                    2>/dev/null \
+                    | grep "^$prefix"
+            done
+            ;;
+        * )
+            printf "add\nupgrade\nremove\n" | grep "^$subcmd"
+    esac
 }
 
 add ()
@@ -59,6 +84,18 @@ upgrade ()
     git submodule update --remote --merge
     git commit "$PACK_DIR" -c "Update packs"
 }
+
+if [ -n "$COMP_LINE" ]
+then
+    bash_autocomplete "$@"
+    exit 0
+fi
+
+COMMAND="$1"
+if [ "$#" -gt 0 ]
+then
+    shift
+fi
 
 case "$COMMAND" in
     add|install )
