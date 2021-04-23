@@ -82,7 +82,7 @@ upgrade ()
 {
     set -x
     git submodule update --remote --merge
-    git commit "$PACK_DIR" -c "Update packs"
+    git commit -m "Update packs" "$PACK_DIR"
 }
 
 if [ -n "$COMP_LINE" ]
