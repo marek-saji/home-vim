@@ -236,7 +236,9 @@ noremap <c-]> :call CocActionAsync('jumpDefinition')<CR>
 augroup TODO
     function TodoBufRead ()
         " Show less UI
-        setlocal cmdheight=1 noshowcmd laststatus=0 nonumber signcolumn=no spell
+        setlocal noshowcmd laststatus=0 nonumber signcolumn=no spell
+        " Enable folding
+        setlocal foldmethod=indent foldlevel=999
         " Restore previous position (if valid)
         if line("'\"") > 0 && line("'\"") <= line("$")
             exe "normal! g`\""
