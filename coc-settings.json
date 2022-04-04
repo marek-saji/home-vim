@@ -12,12 +12,66 @@
 
   "signature.target": "echo",
 
+  // "codeLens.enable": true, // nvim
+
 
   // Plugins
 
   "eslint.autoFixOnSave": true,
+  "eslint.options": {
+    "reportUnusedDisableDirectives": "warn"
+  },
 
+  "stylelintplus.autoFixOnFormat": true,
+  "stylelintplus.autoFixOnSave": true,
+
+  "diagnostic-languageserver.mergeConfig": true,
+
+  "diagnostic-languageserver.linters": {
+    // Prefix code with SC for easier googling
+    "shellcheck": {
+      "parseJson": {
+        "message": "${message} [SC${code}]"
+      }
+    },
+    // same as shellckec, but with -e arg
+    "shellcheck-dotenv": {
+      "command": "shellcheck",
+      "debounce": 100,
+      "args": [
+        // ignore errors about missing shebang and exports
+        "-e",
+        "SC2148,SC2034",
+        "--format",
+        "json",
+        "-"
+      ],
+      "sourceName": "shellcheck",
+      "parseJson": {
+        "line": "line",
+        "column": "column",
+        "endLine": "endLine",
+        "endColumn": "endColumn",
+        "message": "${message} [SC${code}]",
+        "security": "level"
+      },
+      "securities": {
+        "error": "error",
+        "warning": "warning",
+        "info": "info",
+        "style": "hint"
+      }
+    }
+  },
   "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck"
-  }
+    "sh": "shellcheck",
+    "dotenv": "shellcheck-dotenv"
+  },
+
+  "markdownlint.config": {
+    "MD003": {"style": "setext_with_atx"},
+    "MD012": {"maximum": 2},
+    "MD033": false
+  },
+  "coc.preferences.extensionUpdateCheck": "never"
 }
