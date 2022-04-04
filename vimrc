@@ -1,5 +1,8 @@
 " vim: shiftwidth=4 tabstop=4 expandtab
 
+" Show config problems. Will be permanently showin in statusline
+let warnings=[]
+
 if &encoding == 'utf-8'
     let g:errorSign = '🔥'
     let g:warnSign = '⚠️ '
@@ -56,20 +59,21 @@ set hlsearch
 set incsearch
 
 colorscheme default
+" dark
 set background=dark
 highlight Normal guifg=white guibg=black
 
 " transparent sign column
 highlight clear SignColumn
-" highlight current line in (almost) black
+" highlight current line
 set cursorline
 highlight CursorLineNr cterm=none ctermbg=black
 highlight CursorLine cterm=none ctermbg=black
-
+" more strict styling of TODO to avoid unreadable text
 highlight Todo cterm=reverse ctermfg=yellow ctermbg=black
 
-" don’t wrap long lines
-set nowrap
+" wrap long lines
+set wrap
 
 " shortens messages to avoid 'press a key' prompt
 set shortmess=atI
@@ -103,6 +107,8 @@ if has("clipboard")
 elseif has("unnamedplus")
   " CLIPBOARD (Ctrl-C/Ctrl-V)
   set clipboard=unnamedplus
+else
+ let warnings+=["no clipboard"]
 endif
 
 " use mouse everywhere
@@ -134,16 +140,18 @@ function! AdjustWindowHeight(minheight, maxheight)
 endfunction
 
 " Files / Backups
-silent !mkdir -p ~/.cache/vim/{backup,temp}
+silent !mkdir -p ~/.cache/vim/{backup,temp,undo}
 set backup
 set backupdir=~/.cache/vim/backup
 set directory=~/.cache/vim/temp
 set makeef=error.err
+set undodir=~/.cache/vim/undo
+set undofile
 
 " Move cursor to next/prev line with →/←
 set whichwrap+=<,>
 
-" prev/next tab  with C-left/right
+" prev/next tab with C-left/right
 map [1;5C <esc>:tabn<CR>
 map [1;5D <esc>:tabp<CR>
 
@@ -181,7 +189,7 @@ function! GitStatus() abort
     return fugitive#statusline()
 endfunction
 
-set statusline=%<%f\ %h%m%r\ %{LinterStatus()}%=\ %{GitStatus()}\ %-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%m%r\ %{LinterStatus()}%=%{join(warnings,',\ ')}\ %{GitStatus()}\ %l,%c%V\ %P
 
 
 
@@ -216,22 +224,29 @@ let g:coc_global_extensions = [
     \ 'coc-eslint',
     \ 'coc-html',
     \ 'coc-json',
-    \ 'coc-stylelint',
+    \ 'coc-markdownlint',
+    \ 'coc-stylelintplus',
     \ 'coc-svg',
     \ 'coc-tsserver',
+    \ 'coc-yaml',
 \ ]
+if has('nvim')
+    let g:coc_global_extensions = g:coc_global_extensions + [
+        \ 'coc-import-cost',
+    \ ]
+endif
 
 " coc: Custom signs
 let g:coc_status_error_sign = g:errorSign
 let g:coc_status_warning_sign = g:warnSign
 
 " coc: Jump to definition
-" In vim 8.1.1228 we’ll be able to do this:
-" set tagfunc=CocTagFunc
-" https://github.com/vim/vim/commit/45e18cbdc40afd8144d20dcc07ad2d981636f4c9
-" https://github.com/neoclide/coc.nvim/pull/1380
-" but for now just remap Ctrl-]
-noremap <c-]> :call CocActionAsync('jumpDefinition')<CR>
+if exists('&tagfunc')
+    set tagfunc=CocTagFunc
+else
+    " for older versions of vim, remap Ctrl-], but Ctrl-t will not work
+    noremap <c-]> :call CocActionAsync('jumpDefinition')<CR>
+endif
 
 augroup TODO
     function TodoBufRead ()
@@ -243,23 +258,37 @@ augroup TODO
         if line("'\"") > 0 && line("'\"") <= line("$")
             exe "normal! g`\""
         endif
+        " silent loadview " FIXME
     endfunction
     autocmd BufRead TODO{,.md,.markdown,.txt} call TodoBufRead()
+    " Save view (restored in TodoBufRead)
+    autocmd BufWinLeave TODO{,.md,.markdown,.txt} silent mkview
 augroup end
 
 augroup jest-snapsots
     autocmd BufRead *.js.snap setlocal ft=javascript
+    autocmd BufRead *.ts.snap setlocal ft=typescript
     autocmd BufRead *.storyshot setlocal ft=javascript
+augroup end
+
+augroup rc-json
+    autocmd BufRead .eslintrc setlocal ft=json
 augroup end
 
 augroup bashfc
     autocmd BufRead /tmp/bash-fc.* setlocal wrap
 augroup end
 
-augroup coc-settings
-    autocmd BufRead coc-settings.json syntax match Comment ~//.*~
-augroup end
-
 augroup jira
     autocmd BufRead jira setlocal ft=confluencewiki spell wrap
 augroup end
+
+augroup dot-env
+    autocmd BufRead .env{,.*} setlocal ft=dotenv syntax=sh commentstring=#\ %s
+    " FIXME Would be much better to use ft=sh but add -e SC2148,SC2034 to shellcheck linter in coc
+augroup end
+
+" FIXME This is not working:
+" augroup mdx
+"     autocmd FileType unlet b:current_syntax | runtime syntax/typescriptreact.vim | let b:current_syntax='mdx'
+" augroup end
