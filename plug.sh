@@ -81,6 +81,7 @@ remove ()
 upgrade ()
 {
     set -x
+    git submodule init
     git submodule update --remote --merge
     git commit -m "Update packs" "$PACK_DIR"
 }
@@ -102,7 +103,7 @@ case "$COMMAND" in
         add "$@" ;;
     rm|remove )
         remove "$@" ;;
-    update|upgrade )
+    init|update|upgrade )
         upgrade "$@" ;;
     help|"" )
         help ;;
