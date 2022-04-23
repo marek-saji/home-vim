@@ -1,4 +1,4 @@
-let php_folding=1
+" let php_folding=1
 
 set shiftwidth=4
 set softtabstop=4

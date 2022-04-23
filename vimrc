@@ -109,7 +109,7 @@ let Grep_Skip_Files = "tags tags-*"
 
 "Plugin 'msanders/snipmate.vim'
 Bundle "MarcWeber/vim-addon-mw-utils"
-Plugin "tomtom/tlib_vim"
+Bundle "tomtom/tlib_vim"
 Plugin 'garbas/vim-snipmate'
 let g:snips_author = 'Marek Augustynowicz'
 
@@ -182,6 +182,7 @@ Plugin 'joonty/vdebug'
 
 set rtp+=/home/saji/local/src/fzf
 Plugin 'junegunn/fzf.vim'
+noremap <c-p> :Files<CR>
 
 
 "Plugin 'kien/ctrlp.vim'
