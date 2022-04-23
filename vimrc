@@ -1,6 +1,6 @@
 " vim: shiftwidth=4 tabstop=4 expandtab
 
-" Show config problems. Will be permanently showin in statusline
+" Show config problems. Will be permanently shown in statusline
 let warnings=[]
 
 if &encoding == 'utf-8'
@@ -45,6 +45,8 @@ set laststatus=2
 set list
 if &encoding == 'utf-8'
     set listchars=tab:⇒·,trail:◦,nbsp:•,extends:▻
+else
+  set list listchars=tab:>-,trail:.,nbsp:_,extends:>
 endif
 
 " GUI: select font
@@ -82,11 +84,15 @@ set shortmess=atI
 set scrolloff=999
 
 " remove comment prefix when joining lines
-set formatoptions+=j
+if v:version ># 703 || v:version ==# 703 && has('patch541')
+  set formatoptions+=j
+endif
 " don’t break lines that are already long
 set formatoptions+=l
 " continue comment after hitting enter in comment
 set formatoptions+=r
+" recognize numbered lists
+set formatoptions+=n
 
 set autoindent
 set smartindent
@@ -104,7 +110,7 @@ set confirm
 if has("clipboard")
   " PRIMARY (select/middle mouse button)
   set clipboard=unnamed
-elseif has("unnamedplus")
+elseif has("xterm_clipboard") && has("unnamedplus")
   " CLIPBOARD (Ctrl-C/Ctrl-V)
   set clipboard=unnamedplus
 else
@@ -155,7 +161,7 @@ set whichwrap+=<,>
 map [1;5C <esc>:tabn<CR>
 map [1;5D <esc>:tabp<CR>
 
-" fat fingers, yo
+" fat fingers, yo (typos)
 command Q q
 command Qa qa
 command QA qa
