@@ -1,4 +1,7 @@
 {
+  "coc.preferences.extensionUpdateCheck": "never",
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+
   "npm.binPath": "/usr/bin/npm",
 
   // Duplicated from the beginning of vimrc 😒
@@ -73,5 +76,6 @@
     "MD012": {"maximum": 2},
     "MD033": false
   },
-  "coc.preferences.extensionUpdateCheck": "never"
+
+  "//": "EOF"
 }
