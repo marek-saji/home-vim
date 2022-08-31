@@ -222,7 +222,11 @@ nmap <Leader>hr <Plug>(GitGutterRevertHunk)
 let g:coc_disable_startup_warning = 1
 
 " coc: Don’t use nvm overwrites
-let g:coc_node_path = '/usr/bin/node'
+if filereadable('/usr/bin/node')
+    let g:coc_node_path = '/usr/bin/node'
+elseif filereadable('/usr/local/bin/node')
+    let g:coc_node_path = '/usr/local/bin/node'
+endif
 
 let g:coc_global_extensions = [
     \ 'coc-css',
