@@ -69,8 +69,8 @@ highlight Normal guifg=white guibg=black
 highlight clear SignColumn
 " highlight current line
 set cursorline
-highlight CursorLineNr cterm=none ctermbg=black
-highlight CursorLine cterm=none ctermbg=black
+highlight CursorLineNr cterm=bold ctermbg=234 ctermfg=LightGrey
+highlight CursorLine cterm=none ctermbg=234
 " more strict styling of TODO to avoid unreadable text
 highlight Todo cterm=reverse ctermfg=yellow ctermbg=black
 
