@@ -46,7 +46,7 @@ set list
 if &encoding == 'utf-8'
     set listchars=tab:⇒·,trail:◦,nbsp:•,extends:▻
 else
-  set list listchars=tab:>-,trail:.,nbsp:_,extends:>
+    set list listchars=tab:>-,trail:.,nbsp:_,extends:>
 endif
 
 " GUI: select font
@@ -85,7 +85,7 @@ set scrolloff=999
 
 " remove comment prefix when joining lines
 if v:version ># 703 || v:version ==# 703 && has('patch541')
-  set formatoptions+=j
+    set formatoptions+=j
 endif
 " don’t break lines that are already long
 set formatoptions+=l
@@ -108,13 +108,13 @@ set confirm
 
 " Use system clipboard
 if has("clipboard")
-  " PRIMARY (select/middle mouse button)
-  set clipboard=unnamed
+    " PRIMARY (select/middle mouse button)
+    set clipboard=unnamed
 elseif has("xterm_clipboard") && has("unnamedplus")
-  " CLIPBOARD (Ctrl-C/Ctrl-V)
-  set clipboard=unnamedplus
+    " CLIPBOARD (Ctrl-C/Ctrl-V)
+    set clipboard=unnamedplus
 else
- let warnings+=["no clipboard"]
+    let warnings+=["no clipboard"]
 endif
 
 " use mouse everywhere
@@ -173,16 +173,16 @@ command Bd bd
 " Create directory, when saving a file
 " source: http://stackoverflow.com/a/4294176
 function s:MkNonExDir(file, buf)
-  if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
-    let dir=fnamemodify(a:file, ':h')
-    if !isdirectory(dir)
-      call mkdir(dir, 'p')
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
     endif
-  endif
 endfunction
 augroup BWCCreateDir
-  autocmd!
-  autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+    autocmd!
+    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
 " Status line
@@ -203,9 +203,9 @@ set statusline=%<%f\ %h%m%r\ %{LinterStatus()}%=%{join(warnings,',\ ')}\ %{GitSt
 
 " Change default command to omit more files
 command! -bang -nargs=? -complete=dir
-  \ Files call fzf#vim#files(<q-args>, {
-    \ 'source': "find . -mindepth 1 \\( -type d \\( -name '.*' -or -name node_modules -or -name npm-packages-offline-cache -or -name dist -or -path './coverage/lcov-report/*' \\) -prune \\) -or -type f -print"
-  \ }, <bang>0)
+            \ Files call fzf#vim#files(<q-args>, {
+                \ 'source': "find . -mindepth 1 \\( -type d \\( -name '.*' -or -name node_modules -or -name npm-packages-offline-cache -or -name dist -or -path './coverage/lcov-report/*' \\) -prune \\) -or -type f -print"
+                \ }, <bang>0)
 " fzf: Map Ctrl-P
 noremap <c-p> :Files<CR>
 " fzf: keep history
@@ -229,21 +229,21 @@ elseif filereadable('/usr/local/bin/node')
 endif
 
 let g:coc_global_extensions = [
-    \ 'coc-css',
-    \ 'coc-diagnostic',
-    \ 'coc-eslint',
-    \ 'coc-html',
-    \ 'coc-json',
-    \ 'coc-markdownlint',
-    \ 'coc-stylelintplus',
-    \ 'coc-svg',
-    \ 'coc-tsserver',
-    \ 'coc-yaml',
-\ ]
+        \ 'coc-css',
+        \ 'coc-diagnostic',
+        \ 'coc-eslint',
+        \ 'coc-html',
+        \ 'coc-json',
+        \ 'coc-markdownlint',
+        \ 'coc-stylelintplus',
+        \ 'coc-svg',
+        \ 'coc-tsserver',
+        \ 'coc-yaml',
+    \ ]
 if has('nvim')
     let g:coc_global_extensions = g:coc_global_extensions + [
-        \ 'coc-import-cost',
-    \ ]
+            \ 'coc-import-cost',
+        \ ]
 endif
 
 " coc: Custom signs
