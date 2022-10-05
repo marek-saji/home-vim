@@ -53,3 +53,6 @@
 [submodule "pack/saji/start/confluencewiki.vim"]
 	path = pack/saji/start/confluencewiki.vim
 	url = https://github.com/vim-scripts/confluencewiki.vim
+[submodule "pack/saji/start/vim-mdx-js"]
+	path = pack/saji/start/vim-mdx-js
+	url = https://github.com/jxnblk/vim-mdx-js.git
