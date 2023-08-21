@@ -56,3 +56,6 @@
 [submodule "pack/saji/start/vim-mdx-js"]
 	path = pack/saji/start/vim-mdx-js
 	url = https://github.com/jxnblk/vim-mdx-js.git
+[submodule "pack/saji/start/copilot.vim"]
+	path = pack/saji/start/copilot.vim
+	url = https://github.com/github/copilot.vim
