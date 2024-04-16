@@ -204,10 +204,28 @@ set statusline=%<%f\ %h%m%r\ %{LinterStatus()}%=%{join(warnings,',\ ')}\ %{GitSt
 " Change default command to omit more files
 command! -bang -nargs=? -complete=dir
             \ Files call fzf#vim#files(<q-args>, {
-                \ 'source': "find . -mindepth 1 \\( -type d \\( -name '.*' -or -name node_modules -or -name npm-packages-offline-cache -or -name dist -or -path './coverage/lcov-report/*' \\) -prune \\) -or -type f -print"
+                \ 'source': "find . -mindepth 1 \\( -type d \\( -name '.*' -or -name node_modules -or -name npm-packages-offline-cache -or -name dist -or -path './coverage/*' -or -name _site -or -path './.yarn/*' \\) -prune \\) -or -type f -print"
                 \ }, <bang>0)
+" Run FZF based on the cwd & git detection
+" 1. Runs :Files, If cwd is not a git repository
+" 2. Runs :GitFiles <cwd> If root is a git repository
+" source: https://github.com/junegunn/fzf.vim/issues/47#issuecomment-646115681
+fun! ProjectFiles()
+  " Throws v:shell_error if is not a git directory
+  let git_status = system('git status')
+  if v:shell_error != 0
+    :Files
+  else
+    " --exclude-standard - Respect gitignore
+    " --others - Show untracked git files
+    let git_files_args = "--exclude-standard --cached --others"
+    let git_files_cmd = ":GitFiles " . git_files_args
+    " dir: getcwd() - Shows file names relative to cwd
+    call fzf#vim#gitfiles(git_files_args, {'dir': getcwd()})
+  endif
+endfun
 " fzf: Map Ctrl-P
-noremap <c-p> :Files<CR>
+noremap <c-p> :call ProjectFiles()<CR>
 " fzf: keep history
 let g:fzf_history_dir = '~/.cache/fzf.vim_history'
 
